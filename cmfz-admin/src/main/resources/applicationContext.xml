@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd ">
+
+    <!--引入外部连接配置文件-->
+    <context:property-placeholder location="classpath*:/jdbc.properties"/>
+    <!--配置数据库连接池-->
+    <bean name="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="${driver}"/>
+        <property name="url" value="${url}"/>
+        <property name="username" value="${name}"/>
+        <property name="password" value="${pwd}"/>
+    </bean>
+    <!--sqlSessionFactroy-->
+    <bean name="sqlSessionFactroy" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="mapperLocations">
+            <list>
+                <value>classpath*:/cn/cocoding/cmfz/mapper/*.xml</value>
+            </list>
+        </property>
+    </bean>
+    <!--配置Dao 扫描-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactroy"/>
+        <property name="basePackage" value="cn.cocoding.cmfz.dao"/>
+    </bean>
+    <!--扫描base-package下的所有的包，因为注解方式-->
+    <context:component-scan base-package="cn.cocoding.cmfz">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <!--配置事务-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"/>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+   <!-- 全局异常处理
+    <bean class="cn.cocoding.globalException.GlobarExceptionHandler"/>-->
+
+
+
+</beans>

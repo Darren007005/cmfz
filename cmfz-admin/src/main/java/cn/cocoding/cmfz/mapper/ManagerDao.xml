@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cocoding.cmfz.dao.ManagerDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="cn.cocoding.cmfz.entity.Manager">
+        <result column="manager_id" property="managerId" jdbcType="VARCHAR"/>
+        <result column="manager_name" property="managerName" jdbcType="VARCHAR"/>
+        <result column="manager_password" property="managerPassword" jdbcType="VARCHAR"/>
+        <result column="manager_status" property="managerStatus" jdbcType="INTEGER"/>
+        <result column="salt" property="salt" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        manager_id,
+        manager_name,
+        manager_password,
+        manager_status,
+        salt
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="manager.managerId">
+        INSERT INTO manager (
+            manager_id,
+            manager_name,
+            manager_password,
+            manager_status,
+            salt
+        ) VALUES (
+            #{manager.managerId,jdbcType=VARCHAR},
+            #{manager.managerName,jdbcType=VARCHAR},
+            #{manager.managerPassword,jdbcType=VARCHAR},
+            #{manager.managerStatus,jdbcType=INTEGER},
+            #{manager.salt,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="manager.managerId">
+        INSERT INTO manager
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="manager.managerId!=null"> manager_id,</if>
+            <if test="manager.managerName!=null"> manager_name,</if>
+            <if test="manager.managerPassword!=null"> manager_password,</if>
+            <if test="manager.managerStatus!=null"> manager_status,</if>
+            <if test="manager.salt!=null"> salt,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="manager.managerId!=null">#{manager.managerId,jdbcType=VARCHAR},
+            </if>
+            <if test="manager.managerName!=null">#{manager.managerName,jdbcType=VARCHAR},
+            </if>
+            <if test="manager.managerPassword!=null">#{manager.managerPassword,jdbcType=VARCHAR},
+            </if>
+            <if test="manager.managerStatus!=null">#{manager.managerStatus,jdbcType=INTEGER},
+            </if>
+            <if test="manager.salt!=null">#{manager.salt,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO manager (
+        <include refid="Base_Column_List"/>
+        )VALUES
+        <foreach collection="managers" item="manager" index="index" separator=",">
+            (
+            #{manager.managerId,jdbcType=VARCHAR},
+            #{manager.managerName,jdbcType=VARCHAR},
+            #{manager.managerPassword,jdbcType=VARCHAR},
+            #{manager.managerStatus,jdbcType=INTEGER},
+            #{manager.salt,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE manager
+        <set>
+            <if test="manager.managerId != null"> manager_id= #{manager.managerId,jdbcType=VARCHAR},</if>
+            <if test="manager.managerName != null"> manager_name= #{manager.managerName,jdbcType=VARCHAR},</if>
+            <if test="manager.managerPassword != null"> manager_password= #{manager.managerPassword,jdbcType=VARCHAR},</if>
+            <if test="manager.managerStatus != null"> manager_status= #{manager.managerStatus,jdbcType=INTEGER},</if>
+            <if test="manager.salt != null"> salt= #{manager.salt,jdbcType=VARCHAR}</if>
+        </set>
+        WHERE manager_id = #{manager.managerId,jdbcType=VARCHAR}
+    </update>
+    <!--根据姓名查询manager-->
+    <select id="selectByManagerName" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM manager
+        WHERE manager_name = #{managerName}
+    </select>
+</mapper>
+

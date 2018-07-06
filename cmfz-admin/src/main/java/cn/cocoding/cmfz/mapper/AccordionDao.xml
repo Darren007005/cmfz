@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cocoding.cmfz.dao.AccordionDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="cn.cocoding.cmfz.entity.Accordion">
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="text" property="text" jdbcType="VARCHAR"/>
+        <result column="icon_cls" property="iconCls" jdbcType="VARCHAR"/>
+        <result column="url" property="url" jdbcType="VARCHAR"/>
+        <result column="level" property="level" jdbcType="INTEGER"/>
+        <result column="parent_id" property="parentId" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        id,
+        text,
+        icon_cls,
+        url,
+        level,
+        parent_id
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="accordion.id">
+        INSERT INTO accordion (
+            id,
+            text,
+            icon_cls,
+            url,
+            level,
+            parent_id
+        ) VALUES (
+            #{accordion.id,jdbcType=INTEGER},
+            #{accordion.text,jdbcType=VARCHAR},
+            #{accordion.iconCls,jdbcType=VARCHAR},
+            #{accordion.url,jdbcType=VARCHAR},
+            #{accordion.level,jdbcType=INTEGER},
+            #{accordion.parentId,jdbcType=INTEGER}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="accordion.id">
+        INSERT INTO accordion
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="accordion.id!=null"> id,</if>
+            <if test="accordion.text!=null"> text,</if>
+            <if test="accordion.iconCls!=null"> icon_cls,</if>
+            <if test="accordion.url!=null"> url,</if>
+            <if test="accordion.level!=null"> level,</if>
+            <if test="accordion.parentId!=null"> parent_id,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="accordion.id!=null">#{accordion.id,jdbcType=INTEGER},
+            </if>
+            <if test="accordion.text!=null">#{accordion.text,jdbcType=VARCHAR},
+            </if>
+            <if test="accordion.iconCls!=null">#{accordion.iconCls,jdbcType=VARCHAR},
+            </if>
+            <if test="accordion.url!=null">#{accordion.url,jdbcType=VARCHAR},
+            </if>
+            <if test="accordion.level!=null">#{accordion.level,jdbcType=INTEGER},
+            </if>
+            <if test="accordion.parentId!=null">#{accordion.parentId,jdbcType=INTEGER},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO accordion (
+        <include refid="Base_Column_List"/>
+        )VALUES
+        <foreach collection="accordions" item="accordion" index="index" separator=",">
+            (
+            #{accordion.id,jdbcType=INTEGER},
+            #{accordion.text,jdbcType=VARCHAR},
+            #{accordion.iconCls,jdbcType=VARCHAR},
+            #{accordion.url,jdbcType=VARCHAR},
+            #{accordion.level,jdbcType=INTEGER},
+            #{accordion.parentId,jdbcType=INTEGER}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE accordion
+        <set>
+            <if test="accordion.id != null"> id= #{accordion.id,jdbcType=INTEGER},</if>
+            <if test="accordion.text != null"> text= #{accordion.text,jdbcType=VARCHAR},</if>
+            <if test="accordion.iconCls != null"> icon_cls= #{accordion.iconCls,jdbcType=VARCHAR},</if>
+            <if test="accordion.url != null"> url= #{accordion.url,jdbcType=VARCHAR},</if>
+            <if test="accordion.level != null"> level= #{accordion.level,jdbcType=INTEGER},</if>
+            <if test="accordion.parentId != null"> parent_id= #{accordion.parentId,jdbcType=INTEGER}</if>
+        </set>
+        WHERE id = #{accordion.id,jdbcType=INTEGER}
+    </update>
+    <!--//根据level查询出所有的父级分类-->
+    <select id="selectAccordionsByLevel" resultMap="BaseResultMap">
+        select
+         <include refid="Base_Column_List"/>
+         from accordion
+        WHERE LEVEL = #{level}
+    </select>
+    <!--根据一级的text查出一级的id &#45;&#45; 将该id作为查询二级的条件-->
+    <select id="selectAccordionByText" resultType="cn.cocoding.cmfz.entity.Accordion">
+        select
+        <include refid="Base_Column_List"/>
+        from accordion
+        WHERE text = #{text}
+    </select>
+    <select id="selectAccordionsByPid" resultType="cn.cocoding.cmfz.entity.Accordion">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM accordion
+        WHERE parent_id= #{parentId}
+    </select>
+
+</mapper>
+

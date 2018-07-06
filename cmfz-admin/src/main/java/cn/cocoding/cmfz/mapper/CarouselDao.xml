@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cocoding.cmfz.dao.CarouselDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="cn.cocoding.cmfz.entity.Carousel">
+        <result column="carousel_id" property="carouselId" jdbcType="INTEGER"/>
+        <result column="carousel_name" property="carouselName" jdbcType="VARCHAR"/>
+        <result column="carousel_describe" property="carouselDescribe" jdbcType="VARCHAR"/>
+        <result column="carousel_status" property="carouselStatus" jdbcType="VARCHAR"/>
+        <result column="carousel_date" property="carouselDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        carousel_id,
+        carousel_name,
+        carousel_describe,
+        carousel_status,
+        carousel_date
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="carousel.carouselId">
+        INSERT INTO carousel (
+            carousel_id,
+            carousel_name,
+            carousel_describe,
+            carousel_status,
+            carousel_date
+        ) VALUES (
+            #{carousel.carouselId,jdbcType=INTEGER},
+            #{carousel.carouselName,jdbcType=VARCHAR},
+            #{carousel.carouselDescribe,jdbcType=VARCHAR},
+            #{carousel.carouselStatus,jdbcType=VARCHAR},
+            #{carousel.carouselDate,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="carousel.carouselId">
+        INSERT INTO carousel
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="carousel.carouselId!=null"> carousel_id,</if>
+            <if test="carousel.carouselName!=null"> carousel_name,</if>
+            <if test="carousel.carouselDescribe!=null"> carousel_describe,</if>
+            <if test="carousel.carouselStatus!=null"> carousel_status,</if>
+            <if test="carousel.carouselDate!=null"> carousel_date,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="carousel.carouselId!=null">#{carousel.carouselId,jdbcType=INTEGER},
+            </if>
+            <if test="carousel.carouselName!=null">#{carousel.carouselName,jdbcType=VARCHAR},
+            </if>
+            <if test="carousel.carouselDescribe!=null">#{carousel.carouselDescribe,jdbcType=VARCHAR},
+            </if>
+            <if test="carousel.carouselStatus!=null">#{carousel.carouselStatus,jdbcType=VARCHAR},
+            </if>
+            <if test="carousel.carouselDate!=null">#{carousel.carouselDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO carousel (
+        <include refid="Base_Column_List"/>
+        )VALUES
+        <foreach collection="carousels" item="carousel" index="index" separator=",">
+            (
+            #{carousel.carouselId,jdbcType=INTEGER},
+            #{carousel.carouselName,jdbcType=VARCHAR},
+            #{carousel.carouselDescribe,jdbcType=VARCHAR},
+            #{carousel.carouselStatus,jdbcType=VARCHAR},
+            #{carousel.carouselDate,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE carousel
+        <set>
+            <if test="carousel.carouselId != null"> carousel_id= #{carousel.carouselId,jdbcType=INTEGER},</if>
+            <if test="carousel.carouselName != null"> carousel_name= #{carousel.carouselName,jdbcType=VARCHAR},</if>
+            <if test="carousel.carouselDescribe != null"> carousel_describe= #{carousel.carouselDescribe,jdbcType=VARCHAR},</if>
+            <if test="carousel.carouselStatus != null"> carousel_status= #{carousel.carouselStatus,jdbcType=VARCHAR},</if>
+            <if test="carousel.carouselDate != null"> carousel_date= #{carousel.carouselDate,jdbcType=TIMESTAMP}</if>
+        </set>
+        WHERE carousel_id = #{carousel.carouselId,jdbcType=INTEGER}
+    </update>
+    <!--查询所有的轮播图信息-->
+    <select id="selectAllCarousel" resultMap="BaseResultMap">
+        select
+          <include refid="Base_Column_List"/>
+        from carousel limit #{begin},#{rows}
+    </select>
+    <select id="count" resultType="int">
+      SELECT COUNT(*) FROM carousel
+    </select>
+</mapper>
+

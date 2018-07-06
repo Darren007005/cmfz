@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cocoding.cmfz.dao.GuruDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="cn.cocoding.cmfz.entity.Guru">
+        <result column="guru_id" property="guruId" jdbcType="INTEGER"/>
+        <result column="guru_name" property="guruName" jdbcType="VARCHAR"/>
+        <result column="guru_image" property="guruImage" jdbcType="VARCHAR"/>
+        <result column="guru_introduction" property="guruIntroduction" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        guru_id,
+        guru_name,
+        guru_image,
+        guru_introduction
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="guru.guruId">
+        INSERT INTO guru (
+            guru_id,
+            guru_name,
+            guru_image,
+            guru_introduction
+        ) VALUES (
+            #{guru.guruId,jdbcType=INTEGER},
+            #{guru.guruName,jdbcType=VARCHAR},
+            #{guru.guruImage,jdbcType=VARCHAR},
+            #{guru.guruIntroduction,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="guru.guruId">
+        INSERT INTO guru
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guru.guruId!=null"> guru_id,</if>
+            <if test="guru.guruName!=null"> guru_name,</if>
+            <if test="guru.guruImage!=null"> guru_image,</if>
+            <if test="guru.guruIntroduction!=null"> guru_introduction,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="guru.guruId!=null">#{guru.guruId,jdbcType=INTEGER},
+            </if>
+            <if test="guru.guruName!=null">#{guru.guruName,jdbcType=VARCHAR},
+            </if>
+            <if test="guru.guruImage!=null">#{guru.guruImage,jdbcType=VARCHAR},
+            </if>
+            <if test="guru.guruIntroduction!=null">#{guru.guruIntroduction,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO guru (
+        <include refid="Base_Column_List"/>
+        )VALUES
+        <foreach collection="gurus" item="guru" index="index" separator=",">
+            (
+            #{guru.guruId,jdbcType=INTEGER},
+            #{guru.guruName,jdbcType=VARCHAR},
+            #{guru.guruImage,jdbcType=VARCHAR},
+            #{guru.guruIntroduction,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE guru
+        <set>
+            <if test="guru.guruId != null"> guru_id= #{guru.guruId,jdbcType=INTEGER},</if>
+            <if test="guru.guruName != null"> guru_name= #{guru.guruName,jdbcType=VARCHAR},</if>
+            <if test="guru.guruImage != null"> guru_image= #{guru.guruImage,jdbcType=VARCHAR},</if>
+            <if test="guru.guruIntroduction != null"> guru_introduction= #{guru.guruIntroduction,jdbcType=VARCHAR}</if>
+        </set>
+        WHERE guru_id = #{guru.guruId,jdbcType=INTEGER}
+    </update>
+    <!--分页查询法师-->
+    <select id="selectGurus" resultMap="BaseResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM guru
+        WHERE ${paramName} LIKE concat(concat('%',#{value}),'%')
+        limit #{begin },#{rows }
+
+    </select>
+    <!--查询法师的总数量-->
+    <select id="count" resultType="int">
+        select count(*) from guru
+        WHERE ${paramName} LIKE concat(concat('%',#{value}),'%')
+    </select>
+
+</mapper>
+
