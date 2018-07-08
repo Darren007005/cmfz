@@ -94,6 +94,10 @@
         select count(*) from guru
         WHERE ${paramName} LIKE concat(concat('%',#{value}),'%')
     </select>
+    <!--查出所有的法师-->
+    <select id="selectAllGuru" resultMap="BaseResultMap">
+        select * from guru;
+    </select>
 
 </mapper>
 

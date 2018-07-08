@@ -16,4 +16,6 @@ public interface GuruService{
 
     //分页查询法师
     Map<String,Object> queryGurus(String name, String value, int page, int rows);
+
+    List<Guru> queryAllGuru();
 }

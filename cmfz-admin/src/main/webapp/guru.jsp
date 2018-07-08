@@ -138,6 +138,28 @@
             url: '${pageContext.request.contextPath}/guru/guruJson?name='+name+'&&value='+value
         });
     }
+    /*导出上师excel*/
+    function exportExcel(){
+        location.href="${pageContext.request.contextPath}/guru/exportExcel"
+    }
+    /*批量添加上师*/
+    function batchAddGuru(){
+        $("#guruDialog").dialog({
+            href:"${pageContext.request.contextPath}/importExcel.jsp",
+            width:300,height:200,modal:true,
+            title:"提示",
+            buttons:[
+                {text:"上传",iconCls:"icon-script_save",handler:function () {
+                    //上传文件
+                    importExcelFile();
+                    $("#guruDialog").dialog("close")
+                }},
+                {text:"取消",iconCls:"icon-cancel",handler:function(){
+                    $("#guruDialog").dialog("close")
+                }}
+            ]
+        });
+    }
 </script>
 
 <%--数据表格--%>
@@ -154,10 +176,14 @@
             <div data-options="name:'guru_name'">法师名称</div>
         </div>
     </div>
+    <a onclick="exportExcel()" class="easyui-linkbutton" data-options="iconCls:'icon-download',text:'导出为Excel文档'"></a>
+    <a  onclick="batchAddGuru()" class="easyui-linkbutton" data-options="iconCls:'icon-basket_remove',text:'批量添加'"></a>
 </div>
 
 <%--使用class id会冲突--%>
 <%--点击新增轮播图的时候弹出该dialog--%>
 <div class="dialog" data-options="resizable:true,modal:true"></div>
+<%--上师批量添加的对话框--%>
+<div id="guruDialog"></div>
 
 

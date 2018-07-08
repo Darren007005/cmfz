@@ -1,5 +1,7 @@
 package cn.cocoding.cmfz.entity;
 
+import org.jeecgframework.poi.excel.annotation.Excel;
+
 import java.io.Serializable;
 
 /**
@@ -7,8 +9,10 @@ import java.io.Serializable;
  */
 public class Guru implements Serializable{
     private Integer guruId;
+    @Excel(name = "上师名称")
     private String guruName;
     private String guruImage;
+    @Excel(name = "上师简介")
     private String guruIntroduction;
 
     public Integer getGuruId() {

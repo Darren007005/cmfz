@@ -4,6 +4,8 @@ import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 import cn.cocoding.cmfz.entity.Guru;
+import org.springframework.stereotype.Repository;
+
 
 public interface GuruDao {
     int insert(@Param("guru") Guru guru);
@@ -19,4 +21,7 @@ public interface GuruDao {
 
     //查询法师的总数量
     int count(@Param("paramName") String name, @Param("value") String value);
+
+    //查询所有的法师
+    List<Guru> selectAllGuru();
 }
