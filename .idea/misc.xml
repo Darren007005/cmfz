@@ -3,11 +3,13 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/cmfz-admin" />
     <file type="web" url="file://$PROJECT_DIR$/cmfz-rest" />
+    <file type="web" url="file://$PROJECT_DIR$/../showMap" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../showMap/pom.xml" />
       </list>
     </option>
   </component>

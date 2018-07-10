@@ -153,6 +153,7 @@
                     //上传文件
                     importExcelFile();
                     $("#guruDialog").dialog("close")
+
                 }},
                 {text:"取消",iconCls:"icon-cancel",handler:function(){
                     $("#guruDialog").dialog("close")

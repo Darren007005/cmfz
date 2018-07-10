@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cocoding.cmfz.dao.ArticleDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="cn.cocoding.cmfz.entity.Article">
+        <result column="article_id" property="articleId" jdbcType="INTEGER"/>
+        <result column="article_name" property="articleName" jdbcType="VARCHAR"/>
+        <result column="article_content" property="articleContent" jdbcType="VARCHAR"/>
+        <result column="article_author" property="articleAuthor" jdbcType="VARCHAR"/>
+        <result column="article_date" property="articleDate" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        article_id,
+        article_name,
+        article_content,
+        article_author,
+        article_date
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="article.articleId">
+        INSERT INTO article (
+            article_id,
+            article_name,
+            article_content,
+            article_author,
+            article_date
+        ) VALUES (
+            #{article.articleId,jdbcType=INTEGER},
+            #{article.articleName,jdbcType=VARCHAR},
+            #{article.articleContent,jdbcType=VARCHAR},
+            #{article.articleAuthor,jdbcType=VARCHAR},
+            #{article.articleDate,jdbcType=TIMESTAMP}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="article.articleId">
+        INSERT INTO article
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="article.articleId!=null"> article_id,</if>
+            <if test="article.articleName!=null"> article_name,</if>
+            <if test="article.articleContent!=null"> article_content,</if>
+            <if test="article.articleAuthor!=null"> article_author,</if>
+            <if test="article.articleDate!=null"> article_date,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="article.articleId!=null">#{article.articleId,jdbcType=INTEGER},
+            </if>
+            <if test="article.articleName!=null">#{article.articleName,jdbcType=VARCHAR},
+            </if>
+            <if test="article.articleContent!=null">#{article.articleContent,jdbcType=VARCHAR},
+            </if>
+            <if test="article.articleAuthor!=null">#{article.articleAuthor,jdbcType=VARCHAR},
+            </if>
+            <if test="article.articleDate!=null">#{article.articleDate,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO article (
+        <include refid="Base_Column_List"/>
+        )VALUES
+        <foreach collection="articles" item="article" index="index" separator=",">
+            (
+            #{article.articleId,jdbcType=INTEGER},
+            #{article.articleName,jdbcType=VARCHAR},
+            #{article.articleContent,jdbcType=VARCHAR},
+            #{article.articleAuthor,jdbcType=VARCHAR},
+            #{article.articleDate,jdbcType=TIMESTAMP}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE article
+        <set>
+            <if test="article.articleId != null"> article_id= #{article.articleId,jdbcType=INTEGER},</if>
+            <if test="article.articleName != null"> article_name= #{article.articleName,jdbcType=VARCHAR},</if>
+            <if test="article.articleContent != null"> article_content= #{article.articleContent,jdbcType=VARCHAR},</if>
+            <if test="article.articleAuthor != null"> article_author= #{article.articleAuthor,jdbcType=VARCHAR},</if>
+            <if test="article.articleDate != null"> article_date= #{article.articleDate,jdbcType=TIMESTAMP}</if>
+        </set>
+        WHERE article_id = #{article.articleId,jdbcType=INTEGER}
+    </update>
+</mapper>
+

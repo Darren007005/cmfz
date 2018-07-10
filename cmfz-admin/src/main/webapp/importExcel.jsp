@@ -3,7 +3,7 @@
     //上传Excel文件
     function importExcelFile(){
         $("#importExcelForm").form('submit',{
-           url:"${pageContext.request.contextPath}/guru/importExcel.do",
+           url:"${pageContext.request.contextPath}/guru/importExcel",
            success:function (data) {
                if (data=="true"){//代表添加成功
                    $.messager.show({
@@ -29,6 +29,7 @@
                        showType:'slide'
                    });
                }
+               $('.datagridView').datagrid("reload");
            }
         });
     }

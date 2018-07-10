@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cocoding.cmfz.dao.LogDao">
+    <!--auto generated Code-->
+    <resultMap id="BaseResultMap" type="cn.cocoding.cmfz.entity.Log">
+        <result column="log_id" property="logId" jdbcType="INTEGER"/>
+        <result column="log_user" property="logUser" jdbcType="VARCHAR"/>
+        <result column="log_time" property="logTime" jdbcType="TIMESTAMP"/>
+        <result column="log_resource" property="logResource" jdbcType="VARCHAR"/>
+        <result column="log_action" property="logAction" jdbcType="VARCHAR"/>
+        <result column="log_message" property="logMessage" jdbcType="VARCHAR"/>
+        <result column="log_result" property="logResult" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--auto generated Code-->
+    <sql id="Base_Column_List">
+        log_id,
+        log_user,
+        log_time,
+        log_resource,
+        log_action,
+        log_message,
+        log_result
+    </sql>
+
+    <!--auto generated Code-->
+    <insert id="insert" useGeneratedKeys="true" keyProperty="log.logId">
+        INSERT INTO log (
+            log_id,
+            log_user,
+            log_time,
+            log_resource,
+            log_action,
+            log_message,
+            log_result
+        ) VALUES (
+            #{log.logId,jdbcType=INTEGER},
+            #{log.logUser,jdbcType=VARCHAR},
+            #{log.logTime,jdbcType=TIMESTAMP},
+            #{log.logResource,jdbcType=VARCHAR},
+            #{log.logAction,jdbcType=VARCHAR},
+            #{log.logMessage,jdbcType=VARCHAR},
+            #{log.logResult,jdbcType=VARCHAR}
+        )
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertSelective" useGeneratedKeys="true" keyProperty="log.logId">
+        INSERT INTO log
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="log.logId!=null"> log_id,</if>
+            <if test="log.logUser!=null"> log_user,</if>
+            <if test="log.logTime!=null"> log_time,</if>
+            <if test="log.logResource!=null"> log_resource,</if>
+            <if test="log.logAction!=null"> log_action,</if>
+            <if test="log.logMessage!=null"> log_message,</if>
+            <if test="log.logResult!=null"> log_result,</if>
+        </trim>
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="log.logId!=null">#{log.logId,jdbcType=INTEGER},
+            </if>
+            <if test="log.logUser!=null">#{log.logUser,jdbcType=VARCHAR},
+            </if>
+            <if test="log.logTime!=null">#{log.logTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="log.logResource!=null">#{log.logResource,jdbcType=VARCHAR},
+            </if>
+            <if test="log.logAction!=null">#{log.logAction,jdbcType=VARCHAR},
+            </if>
+            <if test="log.logMessage!=null">#{log.logMessage,jdbcType=VARCHAR},
+            </if>
+            <if test="log.logResult!=null">#{log.logResult,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <!--auto generated Code-->
+    <insert id="insertList">
+        INSERT INTO log (
+        <include refid="Base_Column_List"/>
+        )VALUES
+        <foreach collection="logs" item="log" index="index" separator=",">
+            (
+            #{log.logId,jdbcType=INTEGER},
+            #{log.logUser,jdbcType=VARCHAR},
+            #{log.logTime,jdbcType=TIMESTAMP},
+            #{log.logResource,jdbcType=VARCHAR},
+            #{log.logAction,jdbcType=VARCHAR},
+            #{log.logMessage,jdbcType=VARCHAR},
+            #{log.logResult,jdbcType=VARCHAR}
+            )
+        </foreach>
+    </insert>
+
+    <!--auto generated Code-->
+    <update id="update">
+        UPDATE log
+        <set>
+            <if test="log.logId != null"> log_id= #{log.logId,jdbcType=INTEGER},</if>
+            <if test="log.logUser != null"> log_user= #{log.logUser,jdbcType=VARCHAR},</if>
+            <if test="log.logTime != null"> log_time= #{log.logTime,jdbcType=TIMESTAMP},</if>
+            <if test="log.logResource != null"> log_resource= #{log.logResource,jdbcType=VARCHAR},</if>
+            <if test="log.logAction != null"> log_action= #{log.logAction,jdbcType=VARCHAR},</if>
+            <if test="log.logMessage != null"> log_message= #{log.logMessage,jdbcType=VARCHAR},</if>
+            <if test="log.logResult != null"> log_result= #{log.logResult,jdbcType=VARCHAR}</if>
+        </set>
+        WHERE log_id = #{log.logId,jdbcType=INTEGER}
+    </update>
+</mapper>
+

@@ -184,6 +184,12 @@
             <artifactId>hibernate-validator</artifactId>
             <version>5.2.4.Final</version>
         </dependency>
+        <!--aspect-->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-aspects</artifactId>
+            <version>4.2.4.RELEASE</version>
+        </dependency>
     </dependencies>
 
     <!--指定java下的xml文件加载到编译后可用-->

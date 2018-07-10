@@ -31,3 +31,11 @@ INSERT INTO accordion (id, text, icon_cls, url, level, parent_id) VALUES (null,'
 INSERT INTO accordion (id, text, icon_cls, url, level, parent_id) VALUES (null,'持明法洲之上师','icon-reload',null,1,null);
 INSERT INTO accordion (id, text, icon_cls, url, level, parent_id) VALUES (null,'上师管理','icon-tip','guru.jsp',2,12);
 
+INSERT INTO accordion (id, text, icon_cls, url, level, parent_id) VALUES (null,'持明法洲之文章','icon-reload',null,1,null);
+INSERT INTO accordion (id, text, icon_cls, url, level, parent_id) VALUES (null,'创建文章','icon-tip','textEdit.jsp',2,15);
+INSERT INTO accordion (id, text, icon_cls, url, level, parent_id) VALUES (null,'文章管理','icon-tip','textEdit.jsp',2,15);
+
+INSERT INTO accordion (id, text, icon_cls, url, level, parent_id) VALUES (null,'持明法洲之统计分析','icon-reload',null,1,null);
+INSERT INTO accordion (id, text, icon_cls, url, level, parent_id) VALUES (null,'用户分布图','icon-tip','userProfile.jsp',2,18);
+INSERT INTO accordion (id, text, icon_cls, url, level, parent_id) VALUES (null,'统计分析','icon-tip','analysis.jsp',2,18);
+

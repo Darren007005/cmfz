@@ -8,12 +8,14 @@
         <outputRelativeToContentRoot value="true" />
         <module name="cmfz-admin" />
         <module name="cmfz-rest" />
+        <module name="showMap" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="cmfz" target="1.8" />
       <module name="cmfz-admin" target="1.8" />
       <module name="cmfz-rest" target="1.8" />
+      <module name="showMap" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

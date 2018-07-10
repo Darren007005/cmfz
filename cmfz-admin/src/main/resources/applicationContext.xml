@@ -2,13 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
-       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx
-       http://www.springframework.org/schema/tx/spring-tx.xsd ">
+       http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
     <!--引入外部连接配置文件-->
     <context:property-placeholder location="classpath*:/jdbc.properties"/>
@@ -37,6 +37,12 @@
     <context:component-scan base-package="cn.cocoding.cmfz">
         <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
     </context:component-scan>
+    <!-- 注册额外功能类-->
+    <!--注意额外功能报扫描方式不起作用-->
+    <bean id="extraAdvice" class="cn.cocoding.cmfz.aspectJ.ExtraAdivce"></bean>
+    <!-- 使用aspectj 风格aop -->
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
     <!--配置事务-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>

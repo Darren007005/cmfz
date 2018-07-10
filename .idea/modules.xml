@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/cmfz.iml" filepath="$PROJECT_DIR$/cmfz.iml" />
       <module fileurl="file://$PROJECT_DIR$/cmfz-admin/cmfz-admin.iml" filepath="$PROJECT_DIR$/cmfz-admin/cmfz-admin.iml" />
       <module fileurl="file://$PROJECT_DIR$/cmfz-rest/cmfz-rest.iml" filepath="$PROJECT_DIR$/cmfz-rest/cmfz-rest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../showMap/showMap.iml" filepath="$PROJECT_DIR$/../showMap/showMap.iml" />
     </modules>
   </component>
 </project>
